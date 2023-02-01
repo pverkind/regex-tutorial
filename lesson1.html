@@ -1,0 +1,136 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="application-name" content="KITAB regex tutorial">
+  <meta name="created" content="2021-05-05">
+  <title>KITAB regex tutorial - lesson 1: letters</title>
+  <link rel="stylesheet" type="text/css" href="css/styles.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xregexp/3.2.0/xregexp-all.min.js"></script>
+</head>
+<body>
+  <h1>Regex tutorial for humanists</h1>
+  <div id="tutorial">
+    <h2>1. Literal characters: letters</h2>
+    <p>
+      Computers see text as a sequence of characters; in computer science,
+      such a sequence of characters is referred to as a 'string' (the imagery
+      is of characters as beads on a string, like a necklace). Everything in
+      a text is considered a character in a string: not only letters and digits,
+      but also whitespace (spaces, tabs, line breaks), punctuation and all other
+      symbols you find on your keyboard.
+    </p>
+    <p>
+      In order to retrieve information from a string using regular expressions,
+      we write patterns that match specific sequences of characters in that
+      string. These patterns are also built up of characters. There are two
+      types of characters in regular expressions:
+    </p>
+    <ul>
+      <li>
+        <strong>metacharacters</strong>: characters that have a special meaning
+        that differs from their usual meaning in regular text.
+        There are only 14 of these special characters
+        (we will discuss their special powers in the next lessons): <br/>
+        <span class="regex">{}[]()^$.|*+?\</span>
+      </li>
+      <li>
+        all other characters in regular expressions are
+        <strong>literal characters</strong>, and have their usual meaning:
+        the character <span class="regex">t</span> in a regex (short for regular
+        expression pattern) will match a lower-case letter "t" in a text string,
+        the character <span class="regex">ل</span> in a regex will match the
+        Arabic letter lām ("ل") in a text string, and so on.
+      </li>
+    </ul>
+    <p>
+      NB: in the lessons in this tutorial, we will always highlight regular
+      expressions in the lesson text in light grey, and put them in a different
+      font and color, to distinguish them from regular text.
+    </p>
+    <p>
+      The simplest regular expression pattern consist entirely of literal
+      characters.
+    </p>
+    <p>
+      Below you will find a number of sample text strings.
+      In the search box below the sample strings, write a pattern that uses
+      only literal characters to match the common word in all three lines.
+    </p>
+    <p>
+      As you start typing your pattern, you will see that all sequences of
+      characters that match your pattern are highlighted (the color of the
+      highlighting is alternating between green and blue to show separate
+      matches).
+    </p>
+    <p>
+      A <span class="CORRECT">&#10004</span> symbol will be displayed
+      next to those sample strings your pattern matches correctly,
+      and a <span class="FALSE">&#10008</span> sign will show you in
+      which strings your pattern did not match the desired characters.
+      Once your regex pattern correctly matches the desired characters in each
+      string, you can move to the next lesson.
+    </p>
+    <p>
+      If you get stuck, click the
+      link below the search box to get a hint; if you still don't know how to
+      write the pattern after the hint, you can ask for the solution to be
+      displayed.
+    </p>
+  </div>
+  <div id="exercise" type="partial_match">  <!-- possible types: full_match, partial_match -->
+    <div id="exercise_title">
+      Exercise 1: match the common word
+    </div>
+    <div id="samples">
+      <table>
+        <thead>
+          <tr>
+            <th>Task</th>
+            <th>Text</th>
+            <th>&nbsp;</th>
+          </tr>
+          <!-- line below the table heading: -->
+          <tr><td style="border-top:1px solid black;" colspan="3"></td></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="instruction">Match the common word</td>
+            <td class="sample" match="example">This is the first example,</td>
+            <td class="correctOrNot"></td>
+          </tr>
+          <tr>
+            <td class="instruction">Match the common word</td>
+            <td class="sample" match="example">examples are great.</td>
+            <td class="correctOrNot"></td>
+          </tr>
+          <tr>
+            <td class="instruction">Match the common word</td>
+            <td class="sample" match="example">Learn by examples!</td>
+            <td class="correctOrNot"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div id="input">
+      <input id="solution_input" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="Type your regex pattern" solution="example"></input>
+      <input id="next_button" type="button" onclick="location.href='lesson2.html';" value="Next lesson" disabled title="Get the solution first!"/>
+    </div>
+    <div id="hintOrSolution">
+      <!--click <a onclick="showHint()" href="javascript:void(0);">here</a> to see a hint-->
+      <input id="hint_button" type="button" onclick="showHint()" value="Hint" title="Get a hint"/>
+      <input id="solution_button" type="button" onclick="showSolution()" value="Solution" title="Take the hint before you get the solution!" disabled/>
+
+    </div>
+    <div id="hint" style="display:none;">
+      The common word between all three sample strings is "example".
+      Try writing that word in the search box to match the word in all
+      three sample strings.
+    </div>
+    <div id="solution" style="display:none;">
+      A regular expression pattern sometimes consists simply of the exact same
+      letters (or other literal characters) that you want to match in the string.
+    </div>
+  </div>
+  <script type="text/javascript" src="js/script.js"></script>
+</body>
+</html>

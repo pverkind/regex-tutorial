@@ -1,0 +1,97 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="application-name" content="KITAB regex tutorial">
+  <meta name="created" content="2021-05-05">
+  <title>KITAB regex tutorial - lesson 4: Word and digit characters</title>
+  <link rel="stylesheet" type="text/css" href="css/styles.css" />
+  <!--<script src="https://unpkg.com/xregexp/xregexp-all.js"></script>--> <!--regular expressions library with support for unicode code blocks-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xregexp/3.2.0/xregexp-all.min.js"></script>
+</head>
+<body>
+  <h1>Regex tutorial for humanists</h1>
+  <div id="tutorial">
+    <h2>5. Word and digit characters (continued)</h2>
+    <p>
+      In some implementations of regular expressions,
+      <span class="regex">\d</span> and <span class="regex">\w</span> will match
+      not only any digit and word character in Latin script, but in any script
+      represented in Unicode (for example, also in Arabic or Chinese).
+      That's the case in Python and R, for example. In the
+      javascript regular expressions library used for this tutorial
+      (<a href="https://xregexp.com/plugins/" target="_blank">XRegExp</a>),
+      <span class="regex">\d</span> matches only the Latin-script
+      (<a href="https://en.wikipedia.org/wiki/ASCII" target="_blank">ASCII</a>)
+      digits 0 to 9, but another regular expression, <span class="regex">\pN</span>
+      (with the "N" of "Numeric") will match any single digit, in any script.
+      Similarly, <span class="regex">\pL</span> (with the "L" of letter),
+      will match any single letter character, in any script (but not digits,
+      nor underscore!).
+    </p>
+    <p>
+      In the search box below the sample strings, write a pattern that matches
+      any string that consists of two letters, followed by two numbers.
+    </p>
+  </div>
+  <div id="exercise" type="full_match">  <!-- possible types: full_match, partial_match -->
+    <div id="exercise_title">
+      Exercise 5: match any string that consists of two letters, followed by two numbers.
+    </div>
+    <div id="samples">
+      <table>
+        <thead>
+          <tr>
+            <th>Task</th>
+            <th>Text</th>
+            <th>&nbsp;</th>
+          </tr>
+          <!-- line below the table heading: -->
+          <tr><td style="border-top:1px solid black;" colspan="3"></td></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="instruction">Match this string entirely</td>
+            <td class="sample" match="Ab21">Ab21</td>
+            <td class="correctOrNot"></td>
+          </tr>
+          <tr>
+            <td class="instruction">Don't match this string</td>
+            <td class="sample" match="">أبجد</td>
+            <td class="correctOrNot"></td>
+          </tr>
+          <tr>
+            <td class="instruction">Match this string entirely</td>
+            <td class="sample" match="أب22">أب22</td>
+            <td class="correctOrNot"></td>
+          </tr>
+          <tr>
+            <td class="instruction">Match this string entirely</td>
+            <td class="sample" match="أA۵2">أA۵2</td>
+            <td class="correctOrNot"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div id="input">
+      <input id="solution_input" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="Type your regex pattern" solution="....\."></input>
+      <input id="next_button" type="button" onclick="location.href='lesson6.html';" value="Next lesson" disabled title="Get the solution first!"/>
+    </div>
+    <div id="hintOrSolution">
+      <input id="hint_button" type="button" onclick="showHint()" value="Hint" title="Get a hint"/>
+      <input id="solution_button" type="button" onclick="showSolution()" value="Solution" title="Take the hint before you get the solution!" disabled/>
+
+    </div>
+    <div id="hint" style="display:none;">
+      Each of the sample strings consists of 4 characters, but in a variety of scripts,
+      so we cannot use the <span class="regex">\w</span> and <span class="regex">\d</span>
+      patterns here. Use a combination of the
+      <span class="regex">\pN</span> and <span class="regex">\pL</span> patterns instead.
+    </div>
+    <div id="solution" style="display:none;">
+      The first two characters can be any letter character in any script (<span class="regex">\pL</span>),
+      the third and fourth must be a digit (<span class="regex">\pN</span>),
+    </div>
+  </div>
+  <script type="text/javascript" src="js/script.js"></script>
+</body>
+</html>

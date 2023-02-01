@@ -1,0 +1,78 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="application-name" content="KITAB regex tutorial">
+  <meta name="created" content="2021-05-05">
+  <title>KITAB regex tutorial - lesson 2: other literal characters</title>
+  <link rel="stylesheet" type="text/css" href="css/styles.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xregexp/3.2.0/xregexp-all.min.js"></script>
+</head>
+<body>
+  <h1>Regex tutorial for humanists</h1>
+  <div id="tutorial">
+    <h2>2. Other literal characters</h2>
+    <p>
+      As we have seen before, all characters except the 14 metacharacters
+      are literal characters, and they can be used in exactly the same way
+      as the letters in the first exercise.
+    </p>
+    <p>
+      In the search box below the sample strings, write a pattern that matches
+      the sequence of characters that is common to all three sample strings.
+    </p>
+  </div>
+  <div id="exercise" type="partial_match">  <!-- possible types: full_match, partial_match -->
+    <div id="exercise_title">
+      Exercise 2: match the common part of each sample string
+    </div>
+    <div id="samples">
+      <table>
+        <thead>
+          <tr>
+            <th>Task</th>
+            <th>Text</th>
+            <th>&nbsp;</th>
+          </tr>
+          <!-- line below the table heading: -->
+          <tr><td style="border-top:1px solid black;" colspan="3"></td></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="instruction">Match the common part</td>
+            <td class="sample" match="3 cats!">He said: "I have 3 cats!"</td>
+            <td class="correctOrNot"></td>
+          </tr>
+          <tr>
+            <td class="instruction">Match the common part</td>
+            <td class="sample" match="3 cats!">"3 cats!?" she asked.</td>
+            <td class="correctOrNot"></td>
+          </tr>
+          <tr>
+            <td class="instruction">Match the common part</td>
+            <td class="sample" match="3 cats!">I wish I had 3 cats! I would feed them well.</td>
+            <td class="correctOrNot"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div id="input">
+      <input id="solution_input" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="Type your regex pattern" solution="3 cats!"></input>
+      <input id="next_button" type="button" onclick="location.href='lesson3.html';" value="Next lesson" disabled title="Get the solution first!"/>
+    </div>
+    <div id="hintOrSolution">
+      <input id="hint_button" type="button" onclick="showHint()" value="Hint" title="Get a hint"/>
+      <input id="solution_button" type="button" onclick="showSolution()" value="Solution" title="Take the hint before you get the solution!" disabled/>
+
+    </div>
+    <div id="hint" style="display:none;">
+      Digits, letters, spaces and the exclamation mark are all literal characters.
+      In the search box, try writing the sequence of 7 literal characters that
+      the 3 sample strings have in common.
+    </div>
+    <div id="solution" style="display:none;">
+      The common part of these three lines of text is "3 cats!".
+    </div>
+  </div>
+  <script type="text/javascript" src="js/script.js"></script>
+</body>
+</html>

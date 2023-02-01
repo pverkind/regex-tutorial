@@ -1,0 +1,116 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="application-name" content="KITAB regex tutorial">
+  <meta name="created" content="2021-05-05">
+  <title>KITAB regex tutorial - lesson 4: Word and digit characters</title>
+  <link rel="stylesheet" type="text/css" href="css/styles.css" />
+  <!--<script src="https://unpkg.com/xregexp/xregexp-all.js"></script>--> <!--regular expressions library with support for unicode code blocks-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xregexp/3.2.0/xregexp-all.min.js"></script>
+</head>
+<body>
+  <h1>Regex tutorial for humanists</h1>
+  <div id="tutorial">
+    <h2>6. Quantification: how often can a character be present?</h2>
+    <p>
+      Very often, we want to make a character optional in our patterns.
+      For example, in English, you might
+      be searching for where a text speaks about cats, in singular or plural.
+      This can be expressed using the special character <span class="regex">?</span>,
+      which means that a character could be present zero or one time: <span class="regex">cats?</span> will match both "cat" and "cats".
+    </p>
+    <p>
+      Sometimes, however, you might want to express that a character should
+      be present at least once, but perhaps more times.
+      This can be done using the special character <span class="regex">+</span>.
+      For example, if you want to match two alternative spellings of the name
+      Mathew (Mathew and Matthew), you could use the regex
+      <span class="regex">Mat+hew</span>. You could also match all dates
+      in a document using the regex <span class="regex">\d+/\d+/\d+</span>:
+      this would match "12/10/2022", "2/2/23", "2019/12/31", etc.
+    </p>
+    <p>
+      In other cases, you might want to indicate that a character could be present
+      zero or more times.
+      This is expressed using the character <span class="regex">*</span>.
+      You might, for example, be interested in all mentions of a word in Arabic,
+      with all possible prefixes that are possible.
+      The regex <span class="regex">\w*كتاب</span> will match
+      "كتاب",
+      "الكتاب",
+      "والكتاب",
+      "فبالكتاب", ...
+    </p>
+    <p>
+      Combine the use of the three quantifiers <span class="regex">?</span>,
+      <span class="regex">+</span> and <span class="regex">*</span> to
+      write a pattern that matches the examples of email addresses below.
+    </p>
+  </div>
+  <div id="exercise" type="full_match">  <!-- possible types: full_match, partial_match -->
+    <div id="exercise_title">
+      Exercise 6: match any string below that consists of a valid email address.
+    </div>
+    <div id="samples">
+      <table>
+        <thead>
+          <tr>
+            <th>Task</th>
+            <th>Text</th>
+            <th>&nbsp;</th>
+          </tr>
+          <!-- line below the table heading: -->
+          <tr><td style="border-top:1px solid black;" colspan="3"></td></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="instruction">Match this string entirely</td>
+            <td class="sample" match="Mathew@mail.org">Mathew@mail.org</td>
+            <td class="correctOrNot"></td>
+          </tr>
+          <tr>
+            <td class="instruction">Don't match this string</td>
+            <td class="sample" match="...@hotmail.com">...@hotmail.com</td>
+            <td class="correctOrNot"></td>
+          </tr>
+          <tr>
+            <td class="instruction">Match this string entirely</td>
+            <td class="sample" match="automator.66@gmail.com">automator.66@gmail.com</td>
+            <td class="correctOrNot"></td>
+          </tr>
+          <tr>
+            <td class="instruction">Match this string entirely</td>
+            <td class="sample" match="john.smith@hotmail.com">john.smith@hotmail.com</td>
+            <td class="correctOrNot"></td>
+          </tr>
+
+          <tr>
+            <td class="instruction">Don't match this string</td>
+            <td class="sample" match="">www.gmail.com</td>
+            <td class="correctOrNot"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div id="input">
+      <input id="solution_input" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="Type your regex pattern" solution="\w+\.?\w*@\w+\.\w+"></input>
+      <input id="next_button" type="button" onclick="location.href='lesson7.html';" value="Next lesson" disabled title="Get the solution first!"/>
+    </div>
+    <div id="hintOrSolution">
+      <input id="hint_button" type="button" onclick="showHint()" value="Hint" title="Get a hint"/>
+      <input id="solution_button" type="button" onclick="showSolution()" value="Solution" title="Take the hint before you get the solution!" disabled/>
+
+    </div>
+    <div id="hint" style="display:none;">
+      All relevant solutions start with <b>more than one</b> alphanumeric character
+      (letters and numbers), <b>sometimes</b> separated by a single full stop,
+      followed by an ampersand, and then <b>more than one</b> letter,
+      a single full stop, and then again <b>more than one</b> letter.
+      Use the relevant quantifier for each of the statements in bold!
+    </div>
+    <div id="solution" style="display:none;">
+    </div>
+  </div>
+  <script type="text/javascript" src="js/script.js"></script>
+</body>
+</html>

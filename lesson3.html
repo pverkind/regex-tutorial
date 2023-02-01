@@ -1,0 +1,104 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="application-name" content="KITAB regex tutorial">
+  <meta name="created" content="2021-05-05">
+  <title>KITAB regex tutorial - lesson 3: the dot metacharacter and escaping</title>
+  <link rel="stylesheet" type="text/css" href="css/styles.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xregexp/3.2.0/xregexp-all.min.js"></script>
+</head>
+<body>
+  <h1>Regex tutorial for humanists</h1>
+  <div id="tutorial">
+    <h2>3. The dot metacharacter and escaping</h2>
+    <p>
+      In regular expressions, the dot <span class="regex">.</span> is a wildcard
+      character. It stands for "<strong>any single character</strong>".
+      Remember that for a computer, any element in a text is a character: so, the
+      dot will match any single letter, digit, space, punctuation mark, or other
+      symbol. There is only one exception: the dot will not match a newline
+      character.
+    </p>
+    <p>
+      Wait a minute - if the dot matches any character, is there no way to
+      match a dot in a text, specifically? For example, it is easy to imagine
+      that you'd want to match a full stop at the end of a sentence, or
+      the decimal separator in a number like 12.345... Of course this is
+      possible! Any of the 14 metacharacters in regular expressions
+      can be reduced to its literal meaning by "escaping" it, that is, by
+      putting a backslash character (<span class="regex">\</span>) in front of
+      it. So, the regex <span class="regex">\.</span> will only match a dot in
+      the string, not any other character;
+      the regex <span class="regex">\?</span> will only match a question mark
+      in the string;
+      and <span class="regex">\\</span> will match only a backslash.
+    </p>
+    <p>
+      In the search box below the sample strings, write a pattern that matches
+      only those sequences of characters that end with a full stop.
+    </p>
+  </div>
+  <div id="exercise" type="full_match">  <!-- possible types: full_match, partial_match -->
+    <div id="exercise_title">
+      Exercise 3: match only the sequences that end with a full stop
+    </div>
+    <div id="samples">
+      <table>
+        <thead>
+          <tr>
+            <th>Task</th>
+            <th>Text</th>
+            <th>&nbsp;</th>
+          </tr>
+          <!-- line below the table heading: -->
+          <tr><td style="border-top:1px solid black;" colspan="3"></td></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="instruction">Match this string entirely</td>
+            <td class="sample" match="cats.">cats.</td>
+            <td class="correctOrNot"></td>
+          </tr>
+          <tr>
+            <td class="instruction">Don't match this string</td>
+            <td class="sample" match="'no.'">'no.'</td>
+            <td class="correctOrNot"></td>
+          </tr>
+          <tr>
+            <td class="instruction">Match this string entirely</td>
+            <td class="sample" match="1234.">1234.</td>
+            <td class="correctOrNot"></td>
+          </tr>
+          <tr>
+            <td class="instruction">Match this string entirely</td>
+            <td class="sample" match="?! ~.">?! ~.</td>
+            <td class="correctOrNot"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div id="input">
+      <input id="solution_input" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="Type your regex pattern" solution="....\."></input>
+      <input id="next_button" type="button" onclick="location.href='lesson4.html';" value="Next lesson" disabled title="Get the solution first!"/>
+    </div>
+    <div id="hintOrSolution">
+      <input id="hint_button" type="button" onclick="showHint()" value="Hint" title="Get a hint"/>
+      <input id="solution_button" type="button" onclick="showSolution()" value="Solution" title="Take the hint before you get the solution!" disabled/>
+
+    </div>
+    <div id="hint" style="display:none;">
+      Each of the sample strings consists of 5 characters. You have to match only
+      those strings that end with a dot (remember, quotation marks are characters
+      like any other character!).
+      The dot stands for any single character, including a "literal dot".
+      You will have to escape it where it should stand specifically for a full stop.
+    </div>
+    <div id="solution" style="display:none;">
+      The first four characters in every string can be matched with a dot.
+      Since the second string should not be matched, and all other strings end
+      with a full stop, the last character in the pattern should be an escaped dot.
+    </div>
+  </div>
+  <script type="text/javascript" src="js/script.js"></script>
+</body>
+</html>

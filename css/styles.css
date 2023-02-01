@@ -1,0 +1,39 @@
+table {
+  padding-bottom: 20px;
+}
+
+th {
+  text-align: left;
+}
+
+td {
+  padding-right: 50px;
+}
+
+div {
+  padding-bottom: 20px;
+}
+
+.matched_odd {
+  background-color: lightgreen;
+}
+
+.matched_even {
+  background-color: lightblue;
+}
+
+.regex {
+  background-color: lightgrey;
+  font-family: monospace;
+  color: blue;
+}
+
+.CORRECT {
+  color: ForestGreen;
+  font-weight: bold;
+}
+
+.FALSE {
+  color: red;
+  font-weight: bold;
+}
