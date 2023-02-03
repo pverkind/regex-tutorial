@@ -3,7 +3,7 @@
   <meta charset="utf-8">
   <meta name="application-name" content="KITAB regex tutorial">
   <meta name="created" content="2021-05-05">
-  <title>KITAB regex tutorial - lesson 8: Matching specific characters</title>
+  <title>KITAB regex tutorial - lesson 8: More precise quantification</title>
   <link rel="stylesheet" type="text/css" href="css/styles.css" />
   <!--<script src="https://unpkg.com/xregexp/xregexp-all.js"></script>--> <!--regular expressions library with support for unicode code blocks-->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/xregexp/3.2.0/xregexp-all.min.js"></script>
@@ -11,33 +11,32 @@
 <body>
   <h1>Regex tutorial for humanists</h1>
   <div id="tutorial">
-    <h2>8. Matching specific characters</h2>
+    <h2>8. More precise quantification</h2>
     <p>
-      Sometimes, it's not enough to state that any word character may be present;
-      you want to specify which characters are allowed.
-      We can use the square brackets <span class="regex">[]</span> for this.
-      For example, the regex <span class="regex">c[au]t</span> will match
-      "cat" and "cut" ('a "c" followed by either an "a" or a "u", followed by a "t"').
+      Sometimes, it's not enough to state that a character may be present "one or more"
+      times; you might want to state exactly how many times it may be present.
+      This is expressed in regular expressions using the curly braces <span class="regex">{}</span> .
+      For example, if you are searching for words that are exactly 5 characters,
+      you could use this regex: <span class="regex">\w{5}</span>.
     </p>
     <p>
-      Sometimes, you also want to express the opposite: any character except X, Y or Z.
-      To do this, you add the caret character "^" after the opening square bracket.
-      For example, the regex <span class="regex">la[^pgd]</span>
-      will match "lab" and "lax" but not "lap", "lag" and "lad".
+      You may also want to allow a range of numbers: <span class="regex">\w{5,8}</span>
+      will match any sequence of 5, 6, 7 or 8 word characters.
     </p>
     <p>
-      Note that inside the square brackets all special characters except "\" and "]"
-      lose their special powers: <span class="regex">[.,]</span> will match only a
-      dot and a comma, not "any character except a new line". If you want to include
-      a literal backslash or a literal closing square bracket among the options,
-      you have to escape those:
-      <span class="regex">[[\]\\]</span> will match either an opening bracket, a closing bracket or a backslash.
+      You can also leave out either the start or end number to express "maximum X"
+      or "minimum X": <span class="regex">\w{,8}</span> will match any sequence
+      of up to 8 word characters, while <span class="regex">\w{,8}</span>
+      will match any sequence of minimum 8 word characters.
+    </p>
+    <p>
+      In the search field below, use quantifiers to write a pattern
+      that matches all schools with more less than 10,000 students.
     </p>
   </div>
   <div id="exercise" type="full_match">  <!-- possible types: full_match, partial_match -->
     <div id="exercise_title">
-      Exercise 8: match all singular active and passive present-tense
-      (<i>muḍāriʿ</i>) forms of the Arabic verb <i>kataba</i>, not the plurals.
+      Exercise 7: match all schools with less than 10,000 students.
     </div>
     <div id="samples">
       <table>
@@ -53,40 +52,35 @@
         <tbody>
           <tr>
             <td class="instruction">Match this string entirely</td>
-            <td class="sample" match="yaktubu">yaktubu</td>
+            <td class="sample" match="Saint Paul's High School: 1,199 students">Saint Paul's High School: 1,199 students</td>
             <td class="correctOrNot"></td>
           </tr>
           <tr>
             <td class="instruction">Don't match this string</td>
-            <td class="sample" match="yaktubū">yaktubū</td>
+            <td class="sample" match="London School of Economics: 11,000 students">London School of Economics: 11,000 students</td>
             <td class="correctOrNot"></td>
           </tr>
           <tr>
             <td class="instruction">Match this string entirely</td>
-            <td class="sample" match="yuktabu">yuktabu</td>
+            <td class="sample" match="Sample Primary School: 562 students">Sample Primary School: 562 students</td>
             <td class="correctOrNot"></td>
           </tr>
           <tr>
             <td class="instruction">Match this string entirely</td>
-            <td class="sample" match="taktubu">taktubu</td>
+            <td class="sample" match="Home school: 1 student">Home school: 1 student</td>
             <td class="correctOrNot"></td>
           </tr>
 
           <tr>
             <td class="instruction">Match this string entirely</td>
-            <td class="sample" match="aktubu">aktubu</td>
-            <td class="correctOrNot"></td>
-          </tr>
-          <tr>
-            <td class="instruction">Don't match this string</td>
-            <td class="sample" match="naktubu">naktubu</td>
+            <td class="sample" match="Yale University: 6494 students">Yale University: 6494 students</td>
             <td class="correctOrNot"></td>
           </tr>
         </tbody>
       </table>
     </div>
     <div id="input">
-      <input id="solution_input" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="Type your regex pattern" solution="[yta][au]?kt[ua]bu"></input>
+      <input id="solution_input" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="Type your regex pattern" solution=".+: \d?,?\d{1,4} students?"></input>
       <input id="next_button" type="button" onclick="location.href='lesson9.html';" value="Next lesson" disabled title="Get the solution first!"/>
     </div>
     <div id="hintOrSolution">
@@ -95,15 +89,16 @@
 
     </div>
     <div id="hint" style="display:none;">
-      First of all, pay attention to the allowed prefixes.
-      You will need to make something optional to make sure the first person singular
-      is matched as well as the second and third persons.
-      Second, pay attention to the vowels!
+      There's no pattern in the names of the schools, so you can match any sequence of
+      characters before the colon. For the number of students, think about how many digits may be present for numbers below 10,000. Also observe that some
+      numbers contain a comma, others don't: you will have to make the comma
+      (and the digit before the comma) optional. Finally, note that you have to allow
+      for the singular and plural of the word "student".
     </div>
     <div id="solution" style="display:none;">
-      'a (prefix) "y", "t" or "a", followed by an optional "a" (for active) or "u" (for passive), followed by (the root letters) "k" and "t", followed by an
-      "a" (for passive) or "u" (for active),
-      followed by (the last root letter) "b" and (the ending) "u".'
+      "More than one character, followed by a colon and a space;
+      followed by a single optional digit and and a single optional comma,
+      then 1 to 4 digits, then the word student optionally followed by an s."
     </div>
   </div>
   <script type="text/javascript" src="js/script.js"></script>

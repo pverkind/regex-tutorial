@@ -22,11 +22,12 @@
       (<a href="https://xregexp.com/plugins/" target="_blank">XRegExp</a>),
       <span class="regex">\d</span> matches only the Latin-script
       (<a href="https://en.wikipedia.org/wiki/ASCII" target="_blank">ASCII</a>)
-      digits 0 to 9, but another regular expression, <span class="regex">\pN</span>
+      digits 0 to 9, but another regular expression, <span class="regex">\p{N}</span>
       (with the "N" of "Numeric") will match any single digit, in any script.
-      Similarly, <span class="regex">\pL</span> (with the "L" of letter),
+      Similarly, <span class="regex">\p{L}</span> (with the "L" of letter),
       will match any single letter character, in any script (but not digits,
-      nor underscore!).
+      nor underscore!). This also works in Python's
+      <a href="https://pypi.org/project/regex/" target="_blank">regex library</a>.
     </p>
     <p>
       In the search box below the sample strings, write a pattern that matches

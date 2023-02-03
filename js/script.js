@@ -12,6 +12,7 @@ var solutionInput = document.getElementById('solution_input');
 function checkSolution(e) {
   var correctAnswer = true;
   var answer = solutionInput.value;
+  answer = answer.replace("\\n", "\\\\n");
   var matchType = document.getElementById("exercise").getAttribute("type");
   // check whether the entire line should be matched or only part of it:
   // and convert the user's answer into a regular expressions object accordingly,
@@ -23,6 +24,7 @@ function checkSolution(e) {
     //var answerRegex = new RegExp("^"+answer+"$");
     var answerRegex = XRegExp("^"+answer+"$");
   }
+  console.log(answerRegex);
   var tbody = document.getElementById("samples").getElementsByTagName('tbody')[0];
   for (let row of tbody.rows){
     // check whether row should or should not match:
@@ -32,31 +34,40 @@ function checkSolution(e) {
       var matchOrNot = true;
     }
 
-    var text = row.cells[1].innerText;
+    //var text = row.cells[1].innerText;  // this creates trouble with the whitespace
+    var text = row.cells[1].innerHTML;
+    // remove the highlighting spans:
+    var text = text.replace(/<\/?span[^>]*>/g, "");
+    // temporarily remove the <pre> tags and make sure tabs are represented as tabs:
+    var prefix = false;
+    if (text.includes("<pre>")){
+        prefix = true;
+        text = text.replace(/<\/?pre>/g, "");
+        //text = text.replace(/  +/g, "	");  // tabs
+    }
+    text = text.replace("<br>", "\n");
+    console.log(text);
 
     // get the (first) match of the user's answerRegex with the current row's text string
     var regexMatch = text.match(answerRegex);  // output: array of matches
     if (regexMatch){
       regexMatch = regexMatch[0];
     }
+    console.log(regexMatch);
     // get the current row's desired match:
     var desiredMatch = row.cells[1].getAttribute("match");
+    // fix newline and tab characters present in the match attribute string:
+    desiredMatch = desiredMatch.replace(/\\n/g, "\n");
+    desiredMatch = desiredMatch.replace(/\\t/g, "\t");
 
     // check whether the match of the user's regex is the desired match
     // to decide whether her solution is correct for the current row:
     if (regexMatch === desiredMatch && matchOrNot === true){
       row.cells[2].innerHTML = '<span class="CORRECT">&#10004</span>'; // "TRUE";
-      //row.cells[2].style = "color:ForestGreen;font-weight: bold;"
     } else if (regexMatch !== desiredMatch && matchOrNot === false){
       row.cells[2].innerHTML = '<span class="CORRECT">&#10004</span>'; // "TRUE";
-      //row.cells[2].innerHTML = "&#10004"; // "TRUE";
-      //row.cells[2].style = "color:ForestGreen;font-weight: bold;"
     } else {
       row.cells[2].innerHTML = '<span class="FALSE">&#10008</span>'; // "TRUE";
-      //row.cells[2].innerHTML = "&#10060"; // "FALSE";
-      //row.cells[2].innerHTML = "&#10008"; // "FALSE";
-      //row.cells[2].style = "color:red;font-weight: bold;"
-      // if one row is incorrect, the entire solution is wrong:
       correctAnswer = false;
     }
 
@@ -64,7 +75,7 @@ function checkSolution(e) {
     //var replRegex = new RegExp(answer, "g");
     var replRegex = XRegExp(answer, "g");
     var match_no = 0;
-    row.cells[1].innerHTML = text.replace(replRegex, function(match){
+    var highlighted = text.replace(replRegex, function(match){
       match_no += 1;
       if (match_no % 2){  // odd-numbered matches
         return '<span class="matched_odd">' + match + '</span>';
@@ -72,6 +83,15 @@ function checkSolution(e) {
         return '<span class="matched_even">' + match + '</span>';
       }
     });
+
+    // restore the <pre> and <br> tags:
+    if (prefix) {
+      highlighted = "<pre>"+highlighted+"</pre>";
+    }
+    highlighted = highlighted.replace("\n", "<br>");
+
+    // put the highlighted text back into the html:
+    row.cells[1].innerHTML = highlighted;
 
     // activate the next lesson button if the solution was correct:
     if (correctAnswer === true){

@@ -3,7 +3,7 @@
   <meta charset="utf-8">
   <meta name="application-name" content="KITAB regex tutorial">
   <meta name="created" content="2021-05-05">
-  <title>KITAB regex tutorial - lesson 6: Quantification</title>
+  <title>KITAB regex tutorial - lesson 6: Whitespace</title>
   <link rel="stylesheet" type="text/css" href="css/styles.css" />
   <!--<script src="https://unpkg.com/xregexp/xregexp-all.js"></script>--> <!--regular expressions library with support for unicode code blocks-->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/xregexp/3.2.0/xregexp-all.min.js"></script>
@@ -11,45 +11,48 @@
 <body>
   <h1>Regex tutorial for humanists</h1>
   <div id="tutorial">
-    <h2>6. Quantification: how often can a character be present?</h2>
+    <h2>6. Whitespace</h2>
     <p>
-      Very often, we want to make a character optional in our patterns.
-      For example, in English, you might
-      be searching for where a text speaks about cats, in singular or plural.
-      This can be expressed using the special character <span class="regex">?</span>,
-      which means that a character could be present zero or one time: <span class="regex">cats?</span> will match both "cat" and "cats".
+      Whitespace is a special category of characters, and a number of
+      symbols denote specific types of whitespace in regular expressions:
     </p>
+    <ul>
+      <li>
+        <span class="regex">\t</span> : the (horizontal) <a href="https://en.wikipedia.org/wiki/Tab_key">tab</a> character
+      </li>
+      <li>
+        <span class="regex">\n</span> : the <a href="https://en.wikipedia.org/wiki/Newline">newline (aka "linefeed")</a> character
+      </li>
+      <li>
+        <span class="regex">\r</span> : the <a href="https://en.wikipedia.org/wiki/Carriage_return">carriage return</a> character
+        (in Windows, new lines are indicated by a combination of carriage return +
+        newline characters: "\r\n"; on Mac and Linux,
+        only the newline character "\n" is used to indicate new lines in a text).
+        This character is a leftover from the typewriter age, in which the "carriage"
+        that held the paper was first returned to its initial position
+        and then the paper was shifted upwards; the result was that the machine
+        could start to write on a new line.
+      </li>
+
+      <li>
+        <span class="regex">\s</span> : any type of horizontal or vertical whitespace
+        (space, tab, newline, carriage return, vertical tab)
+      </li>
+      <li>
+        <span class="regex">\S</span> (capital S): any character that is not a
+        whitespace character (that is, the opposite of <span class="regex">\s</span>,
+        like <span class="regex">\D</span> means the opposite of
+        <span class="regex">\d</span>, see <a href="lesson4.html">lesson 4</a>)
+      </li>
+    </ul>
     <p>
-      Sometimes, however, you might want to express that a character should
-      be present at least once, but perhaps more times.
-      This can be done using the special character <span class="regex">+</span>.
-      For example, if you want to match two alternative spellings of the name
-      Mathew (Mathew and Matthew), you could use the regex
-      <span class="regex">Mat+hew</span>. You could also match all dates
-      in a document using the regex <span class="regex">\d+/\d+/\d+</span>:
-      this would match "12/10/2022", "2/2/23", "2019/12/31", etc.
-    </p>
-    <p>
-      In other cases, you might want to indicate that a character could be present
-      zero or more times.
-      This is expressed using the character <span class="regex">*</span>.
-      You might, for example, be interested in all mentions of a word in Arabic,
-      with all possible prefixes that are possible.
-      The regex <span class="regex">\w*كتاب</span> will match
-      "كتاب",
-      "الكتاب",
-      "والكتاب",
-      "فبالكتاب", ...
-    </p>
-    <p>
-      Combine the use of the three quantifiers <span class="regex">?</span>,
-      <span class="regex">+</span> and <span class="regex">*</span> to
-      write a pattern that matches the examples of email addresses below.
+      In the search box below the sample strings, write a pattern that matches
+      any string that consists of two three-letter words separated by any type of whitespace.
     </p>
   </div>
   <div id="exercise" type="full_match">  <!-- possible types: full_match, partial_match -->
     <div id="exercise_title">
-      Exercise 6: match any string below that consists of a valid email address.
+      Exercise 6: any string that consists of two three-letter words separated by any type of whitespace.
     </div>
     <div id="samples">
       <table>
@@ -65,35 +68,29 @@
         <tbody>
           <tr>
             <td class="instruction">Match this string entirely</td>
-            <td class="sample" match="Mathew@mail.org">Mathew@mail.org</td>
+            <td class="sample" match="hey you">hey you</td>
             <td class="correctOrNot"></td>
           </tr>
           <tr>
             <td class="instruction">Don't match this string</td>
-            <td class="sample" match="...@hotmail.com">...@hotmail.com</td>
+            <td class="sample" match="not_you">not_you</td>
             <td class="correctOrNot"></td>
           </tr>
           <tr>
             <td class="instruction">Match this string entirely</td>
-            <td class="sample" match="automator.66@gmail.com">automator.66@gmail.com</td>
+            <td class="sample" match="yes\nyou">yes<br>you</td>
             <td class="correctOrNot"></td>
           </tr>
           <tr>
             <td class="instruction">Match this string entirely</td>
-            <td class="sample" match="john.smith@hotmail.com">john.smith@hotmail.com</td>
-            <td class="correctOrNot"></td>
-          </tr>
-
-          <tr>
-            <td class="instruction">Don't match this string</td>
-            <td class="sample" match="">www.gmail.com</td>
+            <td class="sample" match="tab\tkey"><pre>tab	key</pre></td>
             <td class="correctOrNot"></td>
           </tr>
         </tbody>
       </table>
     </div>
     <div id="input">
-      <input id="solution_input" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="Type your regex pattern" solution="\w+\.?\w*@\w+\.\w+"></input>
+      <input id="solution_input" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="Type your regex pattern" solution="....\."></input>
       <input id="next_button" type="button" onclick="location.href='lesson7.html';" value="Next lesson" disabled title="Get the solution first!"/>
     </div>
     <div id="hintOrSolution">
@@ -102,13 +99,14 @@
 
     </div>
     <div id="hint" style="display:none;">
-      All relevant solutions start with <b>more than one</b> alphanumeric character
-      (letters and numbers), <b>sometimes</b> separated by a single full stop,
-      followed by an ampersand, and then <b>more than one</b> letter,
-      a single full stop, and then again <b>more than one</b> letter.
-      Use the relevant quantifier for each of the statements in bold!
+      Each of the sample strings consists of 4 characters, but in a variety of scripts,
+      so we cannot use the <span class="regex">\w</span> and <span class="regex">\d</span>
+      patterns here. Use a combination of the
+      <span class="regex">\pN</span> and <span class="regex">\pL</span> patterns instead.
     </div>
     <div id="solution" style="display:none;">
+      The first two characters can be any letter character in any script (<span class="regex">\pL</span>),
+      the third and fourth must be a digit (<span class="regex">\pN</span>),
     </div>
   </div>
   <script type="text/javascript" src="js/script.js"></script>

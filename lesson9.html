@@ -3,7 +3,7 @@
   <meta charset="utf-8">
   <meta name="application-name" content="KITAB regex tutorial">
   <meta name="created" content="2021-05-05">
-  <title>KITAB regex tutorial - lesson 9: Matching a range of characters</title>
+  <title>KITAB regex tutorial - lesson 9: Matching specific characters</title>
   <link rel="stylesheet" type="text/css" href="css/styles.css" />
   <!--<script src="https://unpkg.com/xregexp/xregexp-all.js"></script>--> <!--regular expressions library with support for unicode code blocks-->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/xregexp/3.2.0/xregexp-all.min.js"></script>
@@ -11,40 +11,33 @@
 <body>
   <h1>Regex tutorial for humanists</h1>
   <div id="tutorial">
-    <h2>9. Matching a range of characters</h2>
+    <h2>9. Matching specific characters</h2>
     <p>
-      The square brackets can also be used to specify a range of characters.
-      For example, <span class="regex">[0-9]</span> will match any
-      (Latin-script) digit, <span class="regex">[a-z]</span> will match any
-      lower-case letter between a and z, and <span class="regex">[A-Z]</span>
-      will match any upper-case letter between A and Z.
+      Sometimes, it's not enough to state that any word character may be present;
+      you want to specify which characters are allowed.
+      We can use the square brackets <span class="regex">[]</span> for this.
+      For example, the regex <span class="regex">c[au]t</span> will match
+      "cat" and "cut" ('a "c" followed by either an "a" or a "u", followed by a "t"').
     </p>
     <p>
-      Regular expressions engines that are Unicode-compliant
-      use the Unicode order of characters to determine which characters
-      are included in a range; you can take a look
-      at a <a href="https://unicode-table.com/en/blocks/" target="_blank">Unicode chart</a>
-      to find the first and last character of your range.
-      For example, the range  <span class="regex">[😀-🙏]</span>
-      will match any emoticon in the Unicode standard
-      (see <a href="https://unicode-table.com/en/blocks/emoticons/" target="_blank">unicode-table.com/en/blocks/emoticons/</a>).
+      Sometimes, you also want to express the opposite: any character except X, Y or Z.
+      To do this, you add the caret character "^" after the opening square bracket.
+      For example, the regex <span class="regex">la[^pgd]</span>
+      will match "lab" and "lax" but not "lap", "lag" and "lad".
     </p>
     <p>
-      These ranges can be combined with other characters or ranges:
-      for example, the regex <span class="regex">[a-fA-F.,]</span>
-      will match any letter from a to f (both lower- and upper-case),
-      and any full stop or comma.
-    </p>
-    <p>
-      The caret "^" character can be used here as well to invert the options:
-      <span class="regex">[^a-z]</span> will match any character that is not
-      a lower-case letter from a to z.
+      Note that inside the square brackets all special characters except "\" and "]"
+      lose their special powers: <span class="regex">[.,]</span> will match only a
+      dot and a comma, not "any character except a new line". If you want to include
+      a literal backslash or a literal closing square bracket among the options,
+      you have to escape those:
+      <span class="regex">[[\]\\]</span> will match either an opening bracket, a closing bracket or a backslash.
     </p>
   </div>
   <div id="exercise" type="full_match">  <!-- possible types: full_match, partial_match -->
     <div id="exercise_title">
-      Exercise 9: Match all strings containing only Arabic letters, Arabic interpunction
-      and spaces.
+      Exercise 8: match all singular active and passive present-tense
+      (<i>muḍāriʿ</i>) forms of the Arabic verb <i>kataba</i>, not the plurals.
     </div>
     <div id="samples">
       <table>
@@ -60,30 +53,41 @@
         <tbody>
           <tr>
             <td class="instruction">Match this string entirely</td>
-            <td class="sample" match="يكتب">يكتب</td>
+            <td class="sample" match="yaktubu">yaktubu</td>
             <td class="correctOrNot"></td>
           </tr>
           <tr>
             <td class="instruction">Don't match this string</td>
-            <td class="sample" match="Did he write?">Did he write?</td>
+            <td class="sample" match="yaktubū">yaktubū</td>
             <td class="correctOrNot"></td>
           </tr>
           <tr>
             <td class="instruction">Match this string entirely</td>
-            <td class="sample" match="كتب؟">كتب؟</td>
+            <td class="sample" match="yuktabu">yuktabu</td>
             <td class="correctOrNot"></td>
           </tr>
           <tr>
             <td class="instruction">Match this string entirely</td>
-            <td class="sample" match="نعم، كتب كتابا طوييييلا">نعم، كتب كتابا طوييييلا</td>
+            <td class="sample" match="taktubu">taktubu</td>
+            <td class="correctOrNot"></td>
+          </tr>
+
+          <tr>
+            <td class="instruction">Match this string entirely</td>
+            <td class="sample" match="aktubu">aktubu</td>
+            <td class="correctOrNot"></td>
+          </tr>
+          <tr>
+            <td class="instruction">Don't match this string</td>
+            <td class="sample" match="naktubu">naktubu</td>
             <td class="correctOrNot"></td>
           </tr>
         </tbody>
       </table>
     </div>
     <div id="input">
-      <input id="solution_input" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="Type your regex pattern" solution="[ا-ي،؟ ]+"></input>
-      <input id="next_button" type="button" onclick="location.href='the-end.html';" value="Next lesson" disabled title="Get the solution first!"/>
+      <input id="solution_input" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="Type your regex pattern" solution="[yta][au]?kt[ua]bu"></input>
+      <input id="next_button" type="button" onclick="location.href='lesson10.html';" value="Next lesson" disabled title="Get the solution first!"/>
     </div>
     <div id="hintOrSolution">
       <input id="hint_button" type="button" onclick="showHint()" value="Hint" title="Get a hint"/>
@@ -91,11 +95,15 @@
 
     </div>
     <div id="hint" style="display:none;">
-      The first character in the Arabic alphabet is the alif (ا), the last the yāʾ (ي).
-      You can copy and paste the relevant characters into the brackets.
+      First of all, pay attention to the allowed prefixes.
+      You will need to make something optional to make sure the first person singular
+      is matched as well as the second and third persons.
+      Second, pay attention to the vowels!
     </div>
     <div id="solution" style="display:none;">
-      'Any sequence of characters between alif and yāʾ, or a space, Arabic comma or Arabic question mark.'
+      'a (prefix) "y", "t" or "a", followed by an optional "a" (for active) or "u" (for passive), followed by (the root letters) "k" and "t", followed by an
+      "a" (for passive) or "u" (for active),
+      followed by (the last root letter) "b" and (the ending) "u".'
     </div>
   </div>
   <script type="text/javascript" src="js/script.js"></script>
