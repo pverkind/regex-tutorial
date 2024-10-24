@@ -99,14 +99,15 @@
 
     </div>
     <div id="hint" style="display:none;">
-      Each of the sample strings consists of 4 characters, but in a variety of scripts,
-      so we cannot use the <span class="regex">\w</span> and <span class="regex">\d</span>
-      patterns here. Use a combination of the
-      <span class="regex">\pN</span> and <span class="regex">\pL</span> patterns instead.
+      Each of the sample strings consists of 7 characters: three letters followed by a 
+      whitespace character (except in the sample that we should not match), followed by three more letters.
+      Use a sequence of the <span class="regex">\w</span> and <span class="regex">\s</span> patterns
+      to build your pattern.
     </div>
     <div id="solution" style="display:none;">
-      The first two characters can be any letter character in any script (<span class="regex">\pL</span>),
-      the third and fourth must be a digit (<span class="regex">\pN</span>),
+      The pattern consists of three times the symbol for letter (<span class="regex">\w</span>),
+      followed by the symbol for any whitespace character (<span class="regex">\s</span>),
+      followed by three more times the symbol for letter (<span class="regex">\w</span>)
     </div>
   </div>
   <script type="text/javascript" src="js/script.js"></script>
