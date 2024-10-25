@@ -82,7 +82,7 @@
       </table>
     </div>
     <div id="input">
-      <input id="solution_input" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="Type your regex pattern" solution="[ا-ي،؟ ]+"></input>
+      <input id="solution_input" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="Type your regex pattern" solution="[،-ي ]+"></input>
       <input id="next_button" type="button" onclick="location.href='the-end.html';" value="Next lesson" disabled title="Get the solution first!"/>
     </div>
     <div id="hintOrSolution">
@@ -91,11 +91,14 @@
 
     </div>
     <div id="hint" style="display:none;">
-      The first character in the Arabic alphabet is the alif (ا), the last the yāʾ (ي).
+      In the <a href="https://symbl.cc/en/unicode/blocks/arabic/#table">Unicode Arabic code block</a>,
+      the first Arabic letter is the "Arabic letter Hamza" ("ء"), and the last the "Arabic letter Yeh" ("ي").
+      You can copy and paste the relevant characters into the brackets.
+      If you want to include Arabic punctuation, start from the Arabic comma ("،") instead of hamza.
       You can copy and paste the relevant characters into the brackets.
     </div>
     <div id="solution" style="display:none;">
-      'Any sequence of characters between alif and yāʾ, or a space, Arabic comma or Arabic question mark.'
+      'Any sequence of unicode characters between Arabic comma and yāʾ, or a space.'
     </div>
   </div>
   <script type="text/javascript" src="js/script.js"></script>
