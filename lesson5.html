@@ -74,7 +74,7 @@
       </table>
     </div>
     <div id="input">
-      <input id="solution_input" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="Type your regex pattern" solution="....\."></input>
+      <input id="solution_input" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="Type your regex pattern" solution="\p{L}\p{L}\p{N}\p{N}"></input>
       <input id="next_button" type="button" onclick="location.href='lesson6.html';" value="Next lesson" disabled title="Get the solution first!"/>
     </div>
     <div id="hintOrSolution">
@@ -86,7 +86,7 @@
       Each of the sample strings consists of 4 characters, but in a variety of scripts,
       so we cannot use the <span class="regex">\w</span> and <span class="regex">\d</span>
       patterns here. Use a combination of the
-      <span class="regex">\pN</span> and <span class="regex">\pL</span> patterns instead.
+      <span class="regex">\p{N}</span> and <span class="regex">>\p{L}</span> patterns instead.
     </div>
     <div id="solution" style="display:none;">
       The first two characters can be any letter character in any script (<span class="regex">\p{L}</span>),
