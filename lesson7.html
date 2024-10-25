@@ -104,11 +104,18 @@
     <div id="hint" style="display:none;">
       All relevant solutions start with <b>more than one</b> alphanumeric character
       (letters and numbers), <b>sometimes</b> separated by a single full stop,
-      followed by an ampersand, and then <b>more than one</b> letter,
+      followed by an at sign, and then <b>more than one</b> letter,
       a single full stop, and then again <b>more than one</b> letter.
       Use the relevant quantifier for each of the statements in bold!
     </div>
     <div id="solution" style="display:none;">
+      The name part of the email address can be conceived as a sequence of one or more alphanumeric characters 
+      <span class="regex">\w+</span>, followed by zero or one literal dot <span class="regex">\.?</span>,
+      followed by zero or more alphanumeric characters <span class="regex">\w*</span>
+      <br/>
+      Remember that <span class="regex">+</span> stands for "one or more", 
+      <span class="regex">*</span> for "zero or more",
+      and <span class="regex">?</span> for "zero or one" repetition.
     </div>
   </div>
   <script type="text/javascript" src="js/script.js"></script>
