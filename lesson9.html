@@ -86,7 +86,7 @@
       </table>
     </div>
     <div id="input">
-      <input id="solution_input" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="Type your regex pattern" solution="[yta][au]?kt[ua]bu"></input>
+      <input id="solution_input" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="Type your regex pattern" solution="[yt]?[au]kt[ua]bu"></input>
       <input id="next_button" type="button" onclick="location.href='lesson10.html';" value="Next lesson" disabled title="Get the solution first!"/>
     </div>
     <div id="hintOrSolution">
@@ -101,9 +101,17 @@
       Second, pay attention to the vowels!
     </div>
     <div id="solution" style="display:none;">
-      'a (prefix) "y", "t" or "a", followed by an optional "a" (for active) or "u" (for passive), followed by (the root letters) "k" and "t", followed by an
-      "a" (for passive) or "u" (for active),
-      followed by (the last root letter) "b" and (the ending) "u".'
+      'an optional (prefix) "y" or "t", followed by an optional "a" (for active) or "u" (for passive), <br/>
+      followed by (the root letters) "k" and "t", <br/>
+      followed by an "a" (for passive) or "u" (for active), <br/>
+      followed by (the last root letter) "b" and (the ending) "u".'<br/>
+      Alternatively: include "a" in the prefix list and make the first vowel optional instead of the prefix:<br/>
+      <span class="regex">[yta][au]?kt[ua]bu</span><br/>
+      'an (prefix) "y", "t" or "a", followed by an optional vowel "a" (for active) or "u" (for passive), <br/>
+      followed by (the root letters) "k" and "t", <br/>
+      followed by an "a" (for passive) or "u" (for active), <br/>
+      followed by (the last root letter) "b" and (the ending) "u".'<br/>
+      
     </div>
   </div>
   <script type="text/javascript" src="js/script.js"></script>
