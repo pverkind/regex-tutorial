@@ -16,8 +16,9 @@
       character. It stands for "<strong>any single character</strong>".
       Remember that for a computer, any element in a text is a character: so, the
       dot will match any single letter, digit, space, punctuation mark, or other
-      symbol. There is only one exception: the dot will not match a newline
-      character.
+      symbol. There is only one exception: <strong>the dot will not match a newline
+      character</strong> (that is, the character inserted when you press the Enter
+      key on your keyboard).
     </p>
     <p>
       Wait a minute - if the dot matches any character, is there no way to
@@ -25,8 +26,8 @@
       that you'd want to match a full stop at the end of a sentence, or
       the decimal separator in a number like 12.345... Of course this is
       possible! Any of the 14 metacharacters in regular expressions
-      can be reduced to its literal meaning by "escaping" it, that is, by
-      putting a backslash character (<span class="regex">\</span>) in front of
+      can be reduced to its literal meaning by <strong>"escaping"</strong> it, that is, by
+      putting a <strong>backslash character</strong> (<span class="regex">\</span>) in front of
       it. So, the regex <span class="regex">\.</span> will only match a dot in
       the string, not any other character;
       the regex <span class="regex">\?</span> will only match a question mark
@@ -37,10 +38,32 @@
       In the search box below the sample strings, write a pattern that matches
       only those sequences of characters that end with a full stop.
     </p>
+    <div class="note">
+      <p>
+        A <span class="CORRECT">&#10004</span> symbol will be displayed
+        next to a task if your regex pattern fulfills that task.
+      </p>
+      <p>
+        If the task is to "match this string entirely", 
+        the <span class="CORRECT">&#10004</span> symbol 
+        will appear as soon as your pattern matches the entire string.
+        If the task is "Don't match this string", 
+        the <span class="CORRECT">&#10004</span> symbol will be displayed as long
+        as your pattern doesn't match the (entire) string.
+      </p>
+      <p>
+        A <span class="FALSE">&#10008</span> sign will show you in
+        which strings your pattern did not (yet) fulfill the task.
+      </p>
+      <p>
+        Once your regex pattern correctly fulfills the task in every
+        string, you can move to the next lesson.
+      </p>
+    </div>
   </div>
   <div id="exercise" type="full_match">  <!-- possible types: full_match, partial_match -->
     <div id="exercise_title">
-      Exercise 3: match only the sequences that end with a full stop
+      Exercise 3: match only the sample strings that end with a full stop
     </div>
     <div id="samples">
       <table>
