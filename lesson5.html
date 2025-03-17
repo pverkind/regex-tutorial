@@ -17,17 +17,29 @@
       <span class="regex">\d</span> and <span class="regex">\w</span> will match
       not only any digit and word character in Latin script, but in any script
       represented in Unicode (for example, also in Arabic or Chinese).
-      That's the case in Python and R, for example. In the
-      javascript regular expressions library used for this tutorial
-      (<a href="https://xregexp.com/plugins/" target="_blank">XRegExp</a>),
+      That's the case in Python and R, for example.
+    </p>
+    <p>
+      In other implementations (including the <a href="https://xregexp.com/plugins/" target="_blank">XRegExp</a> javascript library),
       <span class="regex">\d</span> matches only the Latin-script
       (<a href="https://en.wikipedia.org/wiki/ASCII" target="_blank">ASCII</a>)
       digits 0 to 9, but another regular expression, <span class="regex">\p{N}</span>
-      (with the "N" of "Numeric") will match any single digit, in any script.
+      (with the "N" of "Numeric") will match 
+      <strong>any single digit, in any script</strong>
+      (for example, it will match 5 and ۵, which are both symbols
+      for the number "five").
+    </p>
+    <p>
       Similarly, <span class="regex">\p{L}</span> (with the "L" of letter),
-      will match any single letter character, in any script (but not digits,
-      nor underscore!). This also works in Python's
-      <a href="https://pypi.org/project/regex/" target="_blank">regex library</a>.
+      will match <strong>any single letter character, in any script</strong>
+      (but not digits, nor underscore!). 
+    </p>
+    <p>
+      The expressions <span class="regex">\p{N}</span> and
+      <span class="regex">\p{L}</span> also work in Python's
+      <a href="https://pypi.org/project/regex/" target="_blank">regex library</a>,
+      and are useful when your pattern needs to distinguish 
+      between numbers and letters.
     </p>
     <p>
       In the search box below the sample strings, write a pattern that matches
