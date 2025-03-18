@@ -36,7 +36,10 @@
   </div>
   <div id="exercise" type="full_match">  <!-- possible types: full_match, partial_match -->
     <div id="exercise_title">
-      Exercise 8: match all statements about people born between 1820 and 1828 (including 1820 and 1828):
+      Exercise 8: match all 
+        <a href="https://en.wikipedia.org/wiki/Arabic_verbs#Regular_verb_conjugation_for_person-number,_tense-aspect-mood,_and_participles" target="_blank">
+         singular active and passive present-tense (<i>muḍāriʿ</i>) forms of the Arabic verb <i>kataba</i>
+        </a>, not the plurals.
     </div>
     <div id="samples">
       <table>
@@ -52,44 +55,40 @@
         <tbody>
           <tr>
             <td class="instruction">Match this string entirely</td>
-            <td class="sample" match="born in 1820">born in 1820</td>
+            <td class="sample" match="yaktubu">yaktubu</td>
             <td class="correctOrNot"></td>
           </tr>
           <tr>
             <td class="instruction">Don't match this string</td>
-            <td class="sample" match="">died in 1825</td>
+            <td class="sample" match="yaktubū">yaktubū</td>
             <td class="correctOrNot"></td>
           </tr>
           <tr>
             <td class="instruction">Match this string entirely</td>
-            <td class="sample" match="born in 1821">born in 1821</td>
+            <td class="sample" match="yuktabu">yuktabu</td>
             <td class="correctOrNot"></td>
           </tr>
           <tr>
             <td class="instruction">Match this string entirely</td>
-            <td class="sample" match="Born in 1828">Born in 1828</td>
+            <td class="sample" match="taktubu">taktubu</td>
+            <td class="correctOrNot"></td>
+          </tr>
+
+          <tr>
+            <td class="instruction">Match this string entirely</td>
+            <td class="sample" match="aktubu">aktubu</td>
             <td class="correctOrNot"></td>
           </tr>
           <tr>
             <td class="instruction">Don't match this string</td>
-            <td class="sample" match="">died in 1828</td>
-            <td class="correctOrNot"></td>
-          </tr>
-          <tr>
-            <td class="instruction">Don't match this string</td>
-            <td class="sample" match="">born in 1829</td>
-            <td class="correctOrNot"></td>
-          </tr>
-          <tr>
-            <td class="instruction">Don't match this string</td>
-            <td class="sample" match="">born in 1814</td>
+            <td class="sample" match="naktubu">naktubu</td>
             <td class="correctOrNot"></td>
           </tr>
         </tbody>
       </table>
     </div>
     <div id="input">
-      <input id="solution_input" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="Type your regex pattern" solution="[Bb]orn in 182[012345678]"></input>
+      <input id="solution_input" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="Type your regex pattern" solution="[yt]?[au]kt[ua]bu"></input>
       <input id="next_button" type="button" onclick="location.href='lesson10.html';" value="Next lesson" disabled title="Get the solution first!"/>
     </div>
     <div id="hintOrSolution">
@@ -98,18 +97,22 @@
 
     </div>
     <div id="hint" style="display:none;">
-      First of all, write down which characters each of the strings
-      we need to match have in common.
-      Then use the square brackets to list all the possibilities
-      for the characters that differ (capital or lower case b;
-      the numbers between 0 and 8).
+      First of all, pay attention to the allowed prefixes.
+      You will need to make something optional to make sure the first person singular
+      is matched as well as the second and third persons.
+      Second, pay attention to the vowels!
     </div>
     <div id="solution" style="display:none;">
-      <span class="regex">[Bb]orn in 182[012345678]</span><br/>
-      'Either an upper-case or a lower-case letter b, 
-      followed by the string "orn in", followed by a space, 
-      followed by the numbers 1, 8 and 2,
-      followed by either a 0,1,2,3,4,5,6,7,8' <br/>
+      'an optional (prefix) "y" or "t", followed by an optional "a" (for active) or "u" (for passive), <br/>
+      followed by (the root letters) "k" and "t", <br/>
+      followed by an "a" (for passive) or "u" (for active), <br/>
+      followed by (the last root letter) "b" and (the ending) "u".'<br/>
+      Alternatively: include "a" in the prefix list and make the first vowel optional instead of the prefix:<br/>
+      <span class="regex">[yta][au]?kt[ua]bu</span><br/>
+      'an (prefix) "y", "t" or "a", followed by an optional vowel "a" (for active) or "u" (for passive), <br/>
+      followed by (the root letters) "k" and "t", <br/>
+      followed by an "a" (for passive) or "u" (for active), <br/>
+      followed by (the last root letter) "b" and (the ending) "u".'<br/>
       
     </div>
   </div>
