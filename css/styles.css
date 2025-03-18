@@ -35,6 +35,7 @@ div {
   background-color: lightgrey;
   font-family: monospace;
   color: blue;
+  font-weight: bold;
 }
 
 .CORRECT {
