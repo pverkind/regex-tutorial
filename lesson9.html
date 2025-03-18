@@ -57,7 +57,7 @@
           </tr>
           <tr>
             <td class="instruction">Don't match this string</td>
-            <td class="sample" match="">died in 1825</td>
+            <td class="sample" match="died in 1825">died in 1825</td>
             <td class="correctOrNot"></td>
           </tr>
           <tr>
@@ -72,17 +72,17 @@
           </tr>
           <tr>
             <td class="instruction">Don't match this string</td>
-            <td class="sample" match="">died in 1828</td>
+            <td class="sample" match="died in 1828">died in 1828</td>
             <td class="correctOrNot"></td>
           </tr>
           <tr>
             <td class="instruction">Don't match this string</td>
-            <td class="sample" match="">born in 1829</td>
+            <td class="sample" match="born in 1829">born in 1829</td>
             <td class="correctOrNot"></td>
           </tr>
           <tr>
             <td class="instruction">Don't match this string</td>
-            <td class="sample" match="">born in 1814</td>
+            <td class="sample" match="born in 1814">born in 1814</td>
             <td class="correctOrNot"></td>
           </tr>
         </tbody>
@@ -98,17 +98,17 @@
 
     </div>
     <div id="hint" style="display:none;">
-      First of all, write down which characters each of the strings
-      we need to match have in common.
+      First of all, write down which characters are common to each of the strings
+      we need to match.<br/>
       Then use the square brackets to list all the possibilities
-      for the characters that differ (capital or lower case b;
-      the numbers between 0 and 8).
+      for the characters that differ<br/>
+      (capital or lower case b; the numbers from 0 to 8).
     </div>
     <div id="solution" style="display:none;">
       <span class="regex">[Bb]orn in 182[012345678]</span><br/>
-      'Either an upper-case or a lower-case letter b, 
-      followed by the string "orn in", followed by a space, 
-      followed by the numbers 1, 8 and 2,
+      'Either an upper-case or a lower-case letter b, <br/>
+      followed by the string "orn in", followed by a space, <br/>
+      followed by the numbers 1, 8 and 2,<br/>
       followed by either a 0,1,2,3,4,5,6,7,8' <br/>
       
     </div>
