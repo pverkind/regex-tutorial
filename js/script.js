@@ -8,7 +8,7 @@ var n = XRegExp("\d");
 console.log(XRegExp('\\d').test('abc十三๕٥'));
 console.log('abc十三๕٥'.match(/\p{N}+/u));*/
 
-var solutionInput = document.getElementById('solution_input');
+
 function checkSolution(e) {
   var correctAnswer = true;
   var answer = solutionInput.value;
@@ -110,7 +110,12 @@ function checkSolution(e) {
     }
   }
 }
-solutionInput.addEventListener("keyup", checkSolution);
+
+var solutionInput = document.getElementById('solution_input');
+if (solutionInput){
+  solutionInput.addEventListener("keyup", checkSolution);
+}
+
 function showHint(e){
   document.getElementById('hint').style.display = "block";
   document.getElementById('solution').style.display = "none";
@@ -118,10 +123,18 @@ function showHint(e){
   document.getElementById('solution_button').title = "get the solution";
   //document.getElementById('hintOrSolution').innerHTML = 'click <a onclick="showSolution()" href="javascript:void(0);">here</a> to see the solution'
 }
+
 function showSolution(e){
   document.getElementById('solution').style.display = "block";
   document.getElementById('hint').style.display = "none";
   //document.getElementById('hintOrSolution').innerHTML = 'click <a onclick="showHint()" href="javascript:void(0);">here</a> to see a hint'
   document.getElementById('solution_input').value = document.getElementById('solution_input').getAttribute("solution");
   checkSolution();
+}
+
+function generateCode(){
+  console.log("generate code!")
+  // code: last 9 digits of the current timestamp, reversed
+  let code = Date.now().toString().split("").reverse().join("").substring(0,9);
+  document.getElementById('code').innerHTML = code;
 }
