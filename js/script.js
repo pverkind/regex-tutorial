@@ -60,15 +60,24 @@ function checkSolution(e) {
     desiredMatch = desiredMatch.replace(/\\n/g, "\n");
     desiredMatch = desiredMatch.replace(/\\t/g, "\t");
 
+    let entirely = " (entirely)";
+    if (matchType === "partial_match"){
+      entirely = "";
+    }
     // check whether the match of the user's regex is the desired match
     // to decide whether her solution is correct for the current row:
     if (regexMatch === desiredMatch && matchOrNot === true){
-      row.cells[2].innerHTML = '<span class="CORRECT">&#10004</span>'; // "TRUE";
+      let msg = `Correct: your pattern matches this string${entirely}`;
+      row.cells[2].innerHTML = `<span class="CORRECT" title="${msg}">&#10004</span>`; // "TRUE";
     } else if (regexMatch !== desiredMatch && matchOrNot === false){
-      row.cells[2].innerHTML = '<span class="CORRECT">&#10004</span>'; // "TRUE";
-    } else {
-      row.cells[2].innerHTML = '<span class="FALSE">&#10008</span>'; // "TRUE";
-      correctAnswer = false;
+      let msg = `Correct: your pattern does not${entirely} match this string, as expected`;
+      row.cells[2].innerHTML = `<span class="CORRECT" title="${msg}">&#10004</span>`; // "TRUE";
+    } else if (regexMatch === desiredMatch && matchOrNot === false){
+      let msg = `Wrong: your pattern matches this string${entirely} but it should not match it`;
+      row.cells[2].innerHTML = `<span class="FALSE" title="${msg}">&#10008</span>`; // "FALSE";
+    } else if (regexMatch !== desiredMatch && matchOrNot === true){
+      let msg = `Wrong: your pattern does not match this string but it should match it${entirely}`;
+      row.cells[2].innerHTML = `<span class="FALSE" title="${msg}">&#10008</span>`; // "FALSE";
     }
 
     // Highlight matched characters (odd and matches in different colors):
